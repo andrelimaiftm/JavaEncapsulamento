@@ -9,8 +9,6 @@ out
 *.class
 *.swp
 target
-classes
 build
 bin
-classes
 *~
