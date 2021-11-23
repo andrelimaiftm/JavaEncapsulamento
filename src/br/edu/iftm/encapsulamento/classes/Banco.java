@@ -54,22 +54,75 @@ public class Banco {
         return null;
     }
 
-    public void realizaOperacao(String operacao,Conta conta, Conta destino, double valor){
-        switch (operacao) {
-            case "saque":
-                conta.sacar(valor);                
-                break;
-            case "deposito":
-                conta.depositar(valor);
-                break;
-            case "tranferir":
-                conta.transferir(destino, valor);
-                break;
-            default:
-                break;
-        }
+    private boolean operacaoSaque(Conta conta, double valor){
+        return conta.sacar(valor);
     }
+
+    private boolean operacaoDeposito(Conta conta, double valor){
+        return conta.depositar(valor);
+    }
+
+    private boolean operacaoTransferir(Conta conta, Conta destino, double valor){
+        return conta.transferir(destino, valor);
+    }
+
+    public int realizaOperacao(){
+        System.out.println("Menu");
+        System.out.println("1 - Abrir conta");
+        System.out.println("2 - Efetuar saque");
+        System.out.println("3 - Efetuar deposito");
+        System.out.println("4 - Efetuar transferencia");
+        System.out.println("0 - Sair");
+        String temp = inputDados("Qual opção deseja escolher");
+        int opcao =  Integer.parseInt(temp);
+        if(opcao == 1){
+            abrirConta();
+        }else if (opcao == 2){
+            temp = inputDados("Digite numero da conta");
+            int numero = Integer.parseInt(temp);
+            Conta c = buscarConta(numero);
+            if(c != null){
+                temp = inputDados("Digite o valor do saque");
+                double valor = Integer.parseInt(temp);
+                operacaoSaque(c, valor);
+            }
+        }else if(opcao == 3){
+            temp = inputDados("Digite numero da conta");
+            int numero = Integer.parseInt(temp);
+            Conta c = buscarConta(numero);
+            if(c != null){
+                temp = inputDados("Digite o valor do deposito");
+                double valor = Integer.parseInt(temp);
+                operacaoDeposito(c, valor);
+            }
+        }else if(opcao == 4){
+            temp = inputDados("Digite numero da conta");
+            int numero = Integer.parseInt(temp);
+            Conta c = buscarConta(numero);
+            temp = inputDados("Digite numero da conta para transferencia");
+            numero = Integer.parseInt(temp);
+            Conta d = buscarConta(numero);
+            if(c != null && d != null){
+                temp = inputDados("Digite o valor da tranferencia");
+                double valor = Integer.parseInt(temp);
+                operacaoTransferir(c, d, valor);
+            }
+        }
+        return opcao;
+    } 
     
+    public void iniciar(){
+        int opcao = 0;
+        do {
+            opcao =  realizaOperacao();
+        } while (opcao != 0);
+        /*while (true) {
+            int opcao =  realizaOperacao();
+            if(opcao == 0){
+                break;
+            }
+        }*/
+    }
 
     /**
      * @return String return the nome
@@ -98,5 +151,4 @@ public class Banco {
     public void setVetorContas(Conta[] vetorContas) {
         this.vetorContas = vetorContas;
     }
-
 }

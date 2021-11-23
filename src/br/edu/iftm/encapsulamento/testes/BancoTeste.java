@@ -1,18 +1,19 @@
 package br.edu.iftm.encapsulamento.testes;
 
 import br.edu.iftm.encapsulamento.classes.Banco;
-import br.edu.iftm.encapsulamento.classes.Conta;
 
 public class BancoTeste {
     public static void main(String[] args) {
 
         Banco banco = new Banco("CAIXA", 10);
-        banco.abrirConta();
+        banco.iniciar();
+       
+        /*banco.abrirConta();
         Conta c1 = banco.buscarConta(1);
         banco.realizaOperacao("deposito", c1, null, 100d);
         System.out.println(c1.getSaldo());
         c1 = banco.buscarConta(1);
-        System.out.println(c1.getSaldo());
+        System.out.println(c1.getSaldo());*/
 
         /*
          * Cliente c1 = new Cliente("Antonio","Carlos","12345678912", 27, 01, 1980);

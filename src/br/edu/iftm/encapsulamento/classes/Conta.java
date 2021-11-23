@@ -21,7 +21,7 @@ public class Conta {
     public Conta(int numero, Cliente cliente){        
         this(cliente);
         this.numero = numero;        
-    }
+    }    
 
     public boolean sacar(double valorSaque){        
         if(verificaSaldo(valorSaque)){            
@@ -32,10 +32,12 @@ public class Conta {
         }
     }
 
-    public void depositar(double valorDeposito){
+    public boolean depositar(double valorDeposito){
         if(valorDeposito > 0){            
             this.saldo += valorDeposito;
+            return true;
         }
+        return false;
     }
 
     public boolean transferir(Conta destino, double valorTransferencia){
